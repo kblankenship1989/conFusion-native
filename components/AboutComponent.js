@@ -34,23 +34,30 @@ class Contact extends Component {
                     title={item.name}
                     subtitle={item.description}
                     hideChevron={true}
-                    onPress={() => navigate('Dishdetail', { dishId: item.id })}
                     leftAvatar={{source: require('./images/uthappizza.png')}}
                     />
             )
+        };
+
+        const Leaders = () => {
+            return (
+                <Card
+                    featuredTitle="Corporate Leadership"
+                    >
+                    <FlatList
+                        data={this.state.dishes}
+                        renderitem={renderLeader}
+                        keyExtractor={item => item.id.toString()}
+                    />
+                </Card>
+            );
         }
 
         return (
-            <FlatList
-                data={this.state.dishes}
-                renderitem={renderMenuItem}
-                keyExtractor={item => item.id.toString()}
-                />
-        );
-
-        return (
-            <History />
-
+            <View>
+                <History />
+                <Leaders />
+            </View>
         );
     }
 }
